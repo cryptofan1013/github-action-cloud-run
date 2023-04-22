@@ -24,6 +24,7 @@ env:
   PROJECT_ID: ${{ secrets.PROJECT_ID }}
   RUN_REGION: us-central1
   SERVICE_NAME: super-simple-service
+  GITHUB_SHA: github
 
 jobs:
   setup-build-deploy:
@@ -39,6 +40,7 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: "3.9"
+
       - name: Set up Cloud Run
         uses: google-github-actions/setup-gcloud@v0
         with:
@@ -50,10 +52,12 @@ jobs:
       - name: gcloud Set up
         run: |
           gcloud config set project $PROJECT_ID
+
       # Build and push image to Google Container Registry
       - name: Build
         run: |
           gcloud builds submit -t gcr.io/$PROJECT_ID/$SERVICE_NAME:$GITHUB_SHA
+
       # Deploy image to Cloud Run
       - name: Deploy
         run: |
