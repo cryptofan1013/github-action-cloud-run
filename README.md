@@ -1,4 +1,7 @@
 # github-action-cloud-run
 
-Please refer to this post on Medium
-https://medium.com/@efishtain/github-actions-ship-code-to-gcp-cloud-run-8d607f34e1cd
+Step 1:
+Testing it on the local repo
+
+Step 2:
+Customize so that it works for the project
